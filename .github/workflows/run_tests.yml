@@ -112,7 +112,9 @@ jobs:
         # Do regular install NOT editable install: see GH #3020
         run: |
           python -m pip install --upgrade uv
-          uv pip install ${{ matix.os == 'windows-11-arm' && '--extra-index-url https://download.pytorch.org/whl '}}--system '.[${{ matrix.extras }},plots]'
+          uv pip install $EXTRA_IDX --system '.[${{ matrix.extras }},plots]'
+        env:
+          EXTRA_IDX: ${{ matix.os == 'windows-11-arm' && '--extra-index-url https://download.pytorch.org/whl ' || ''}}
       - name: Download pre-cached datasets
         uses: actions/download-artifact@v4
         with:
