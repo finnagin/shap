@@ -114,7 +114,7 @@ jobs:
           python -m pip install --upgrade uv
           uv pip install $EXTRA_IDX --system '.[${{ matrix.extras }},plots]'
         env:
-          EXTRA_IDX: ${{ matix.os == 'windows-11-arm' && '--extra-index-url https://download.pytorch.org/whl ' || ''}}
+          EXTRA_IDX: ${{ matrix.os == 'windows-11-arm' && '--extra-index-url https://download.pytorch.org/whl ' || ''}}
       - name: Download pre-cached datasets
         uses: actions/download-artifact@v4
         with:
